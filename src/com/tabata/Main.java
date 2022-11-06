@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         ClosestPair closestPair = new ClosestPair();
-        closestPair.run();
+        closestPair.run(20);
     }
 }
 
@@ -40,11 +40,16 @@ class ClosestPair{
         create(filename);
     }
 
-    public void run() throws FileNotFoundException {
+    /**
+     * Funcion que ejecuta todo el codigo
+     * @param nmax max exponent of 2^n which gives total of coordinates that will be created
+     * @throws FileNotFoundException
+     */
+    public void run(int nmax) throws FileNotFoundException {
         PrintWriter out = new PrintWriter(filename);
         int j = 5;
         int i = (int) Math.pow(2, j);
-        while(i <= Math.pow(2,15)){
+        while(i <= Math.pow(2,nmax)){
             numOper = 0;
             j += 1;
             this.n = i;
@@ -59,6 +64,10 @@ class ClosestPair{
         out.close();
     }
 
+    /**
+     * Funcion que implementa el algoritmo divideAndConquer
+     * @param coords lista de coordenadas a dividir
+     */
     public void divideAndConquer(ArrayList<List<Integer>> coords){
         long start = System.nanoTime();
 
@@ -170,7 +179,7 @@ class ClosestPair{
 
     /**
      * Funcion que usa BrutalForce para hallar la distancia dado una lista de coordenadas
-     * @param coord: lista de coordenadas
+     * @param coord lista de coordenadas
      * @param i
      * @param j
      */
@@ -182,8 +191,7 @@ class ClosestPair{
         int x2 = coord.get(j).get(0);
         int y2 = coord.get(j).get(1);
 
-        double d = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-        return d;
+        return  Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
 
     /**
