@@ -11,8 +11,9 @@ import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         ClosestPair closestPair = new ClosestPair();
+        closestPair.run();
     }
 }
 
@@ -43,11 +44,13 @@ class ClosestPair{
         PrintWriter out = new PrintWriter(filename);
         int j = 5;
         int i = (int) Math.pow(2, j);
-        while(i <= Math.pow(2,20)){
+        while(i <= Math.pow(2,15)){
             numOper = 0;
             j += 1;
             this.n = i;
             createCoordinates();
+            closetCoords = new ArrayList<>();
+            distanceClosetCoords = new ArrayList<>();
             divideAndConquer(coords);
             String line = n + " " + numOper + " " + elapsedTime;
             out.println(line);
@@ -98,7 +101,7 @@ class ClosestPair{
         }
         long end = System.nanoTime();
         elapsedTime = end - start;
-
+        numOper = 2*n;
     }
 
     /**
@@ -143,7 +146,7 @@ class ClosestPair{
         }
         return organizedCoords;
     }
-    
+
     /**
      * Funcion que implementa el algoritmo de fuerzabruta
      * @param coords: lista de coordenadas
@@ -209,7 +212,7 @@ class ClosestPair{
     }
 
     /**
-     * Funcion paara crear un archivo
+     * Funcion para crear un archivo
      * @param fname nombre del archivo
      */
     private void create(String fname) {
