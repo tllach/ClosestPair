@@ -81,6 +81,13 @@ class ClosestPair{
             coords.add(Arrays.asList(x, y));
         }
     }
-    
+
+    /**
+     * Funcion encargada de imprimir la lista pasada por parametros
+     * @param coords la lista que se va a imprimir
+     */
+    public void printList(ArrayList<List<Integer>> coords){
+        coords.forEach(System.out::println);
+    }
 
 }
