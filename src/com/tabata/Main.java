@@ -12,7 +12,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        ClosestPair closestPair = new ClosestPair(300);
+        ClosestPair closestPair = new ClosestPair();
     }
 }
 
@@ -24,16 +24,18 @@ class ClosestPair{
     List<Integer> tempCoord2;
     ArrayList<List<Integer>> Px;
     Random rand;
-    int numberCoords;
     int n, numOper;
     long elapsedTime;
     String filename;
+    ArrayList<ArrayList<List<Integer>>> closetCoords;
+    ArrayList<Double> distanceClosetCoords;
+    boolean isDividing;
 
-    public ClosestPair(int number){
+    public ClosestPair(){
         filename = "pruebas.txt";
         rand = new Random();
-        this.numberCoords = number;
         coords = new ArrayList<>();
+        isDividing = false;
         create(filename);
     }
 
@@ -55,15 +57,50 @@ class ClosestPair{
     }
 
     public void divideAndConquer(ArrayList<List<Integer>> coords){
+        long start = System.nanoTime();
+
         ArrayList<List<Integer>> Lx;
         ArrayList<List<Integer>> Rx;
 
-        Px = sorting(coords);
+        if(!isDividing){
+            Px = sorting(coords);
+        }else{
+            Px = coords;
+        }
+
 
         int size = Px.size();
         Lx = new ArrayList<>(Px.subList(0, size / 2));
         Rx = new ArrayList<>(Px.subList(size / 2, size));
+
+        //list created just to iterate between List
+        ArrayList<ArrayList<List<Integer>>> lists = new ArrayList<>();
+        lists.add(Lx);
+        lists.add(Rx);
+
+        tempCoord1 = new ArrayList<>();
+        tempCoord2 = new ArrayList<>();
+
+        for(ArrayList<List<Integer>> list: lists){
+            //checking size of the list
+            if(list.size() <= 3){
+                isDividing = false; //to not sort what is already sorted
+                brutalForce(list);
+                ArrayList<List<Integer>> pairOfCoords = new ArrayList<>();
+                pairOfCoords.add(tempCoord1);
+                pairOfCoords.add(tempCoord2);
+                closetCoords.add(pairOfCoords);
+                distanceClosetCoords.add(d_min);
+            }else{
+                isDividing = true;
+                divideAndConquer(list);
+            }
+        }
+        long end = System.nanoTime();
+        elapsedTime = end - start;
+
     }
+
     /**
      * Funcion sort la lista de coordenadas dada
      * @param coords: lista de coordenadas
@@ -106,10 +143,7 @@ class ClosestPair{
         }
         return organizedCoords;
     }
-
-
-
-
+    
     /**
      * Funcion que implementa el algoritmo de fuerzabruta
      * @param coords: lista de coordenadas
@@ -154,8 +188,8 @@ class ClosestPair{
      */
     public void createCoordinates(){
         int y = rand.nextInt(1000);
-        for(int i = 0; i <= numberCoords; i++){
-            if(i < numberCoords/2){
+        for(int i = 0; i <= n; i++){
+            if(i < n/2){
                 int x = rand.nextInt(500);
                 coords.add(Arrays.asList(x, y));
                 continue;
