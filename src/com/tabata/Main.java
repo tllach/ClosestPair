@@ -22,6 +22,7 @@ class ClosestPair{
     double d_min;
     List<Integer> tempCoord1;
     List<Integer> tempCoord2;
+    ArrayList<List<Integer>> Px;
     Random rand;
     int numberCoords;
     int n, numOper;
@@ -54,8 +55,58 @@ class ClosestPair{
     }
 
     public void divideAndConquer(ArrayList<List<Integer>> coords){
+        ArrayList<List<Integer>> Lx;
+        ArrayList<List<Integer>> Rx;
 
+        Px = sorting(coords);
+
+        int size = Px.size();
+        Lx = new ArrayList<>(Px.subList(0, size / 2));
+        Rx = new ArrayList<>(Px.subList(size / 2, size));
     }
+    /**
+     * Funcion sort la lista de coordenadas dada
+     * @param coords: lista de coordenadas
+     */
+    public ArrayList<List<Integer>> sorting(ArrayList<List<Integer>> coords) {
+        int x = 0; int y = 1;
+        ArrayList<List<Integer>> organizedCoords = new ArrayList<>();
+
+        for(List<Integer> coord: coords) {
+            //for the first time
+            if (organizedCoords.isEmpty()) {
+                organizedCoords.add(coord);
+            } else {
+                int i = 1;
+                int size = organizedCoords.size();
+                List<Integer> coordBefore = organizedCoords.get((size - i));
+                //to check for x primarly and then check for y
+                while (coordBefore.get(x) >= coord.get(x)) {
+                    i++;
+                    //in case x are equals, checks for y secondly
+                    if (coordBefore.get(x).equals(coord.get(x))) {
+                        if (coordBefore.get(y) > coord.get(y)) {
+                            coordBefore = organizedCoords.get((size - i + 1));
+                        } else {
+                            i--;
+                            break;
+                        }
+                    }
+                    //in case the "new coord" have to be in the first position
+                    if (size - i == -1) {
+                        break;
+                    }
+                    //in case x of coordBefore is > than "new coord" x
+                    if (coordBefore.get(x) > coord.get(x)) {
+                        coordBefore = organizedCoords.get((size - i));
+                    }
+                }
+                organizedCoords.add(size - i + 1, coord);
+            }
+        }
+        return organizedCoords;
+    }
+
 
 
 
