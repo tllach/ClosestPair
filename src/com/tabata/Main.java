@@ -1,12 +1,14 @@
 package com.tabata;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
-        ClosestPair closestPair = new ClosestPair();
+        ClosestPair closestPair = new ClosestPair(300);
     }
 }
 
@@ -16,9 +18,12 @@ class ClosestPair{
     double d_min;
     List<Integer> tempCoord1;
     List<Integer> tempCoord2;
+    Random rand;
+    int numberCoords;
 
-    public ClosestPair(){
-
+    public ClosestPair(int number){
+        rand = new Random();
+        this.numberCoords = number;
     }
 
     /**
@@ -60,5 +65,22 @@ class ClosestPair{
         return d;
     }
 
+    /**
+     * Funcion que crea las coordenadas aleatorias
+     */
+    public void createCoordinates(){
+        int y = rand.nextInt(1000);
+        for(int i = 0; i <= numberCoords; i++){
+            if(i < numberCoords/2){
+                int x = rand.nextInt(500);
+                coords.add(Arrays.asList(x, y));
+                continue;
+            }
+            //to make the range of the other half of coordinates be between 500 to 1000
+            int x = (int)(Math.random()*(500) + 1000);
+            coords.add(Arrays.asList(x, y));
+        }
+    }
+    
 
 }
