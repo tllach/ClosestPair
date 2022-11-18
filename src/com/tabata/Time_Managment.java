@@ -1,5 +1,13 @@
 package com.tabata;
 
+/*
+ * Algoritmos Y Complejidad                                 18/11/22
+ * Tabata Llach Bruges
+ *
+ * Class:
+ *     Class made for the time management
+ */
+
 public class Time_Managment {
 
     /* data members */

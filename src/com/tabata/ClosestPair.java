@@ -3,6 +3,14 @@ package com.tabata;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/*
+ * Algoritmos Y Complejidad                                 18/11/22
+ * Tabata Llach Bruges
+ *
+ * Class:
+ *     Class where all the logic is implemented
+ */
+
 class ClosestPair{
 
     public ClosestPair(){ }
@@ -19,7 +27,6 @@ class ClosestPair{
         int j = 4;
         int n = (int) Math.pow(2, j);
         while(n <= Math.pow(2,nmax)){
-            //System.out.println(n);
             ArrayList<Point> coords = createCoordinates(n);
             coords = sort(coords);
             divAndConq.run(coords, n);
@@ -68,14 +75,4 @@ class ClosestPair{
         return coords;
     }
 
-    /**
-     * Funcion encargada de imprimir la lista pasada por parametros
-     * @param coords la lista que se va a imprimir
-     */
-    public void printList(ArrayList<Point> coords){
-        for(Point p: coords){
-            System.out.println("[" + p.getX() + "," + p.getY() + "]");
-        }
-        System.out.println("-------------------");
-    }
 }

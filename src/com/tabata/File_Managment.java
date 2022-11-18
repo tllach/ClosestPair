@@ -5,6 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/*
+ * Algoritmos Y Complejidad                                 18/11/22
+ * Tabata Llach Bruges
+ *
+ * Class:
+ *     Class made for the file management
+ */
+
 public final class File_Managment {
 
     private final String filename;

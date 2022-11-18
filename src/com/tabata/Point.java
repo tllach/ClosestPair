@@ -26,29 +26,6 @@ public final class Point{
         this.y = y;
     }
 
-
-    /**
-     *
-     * References:
-     * [0]: https://www.hackerearth.com/submission/75894682/?
-     * @param //p
-     * @return
-
-    @Override
-    public int compareTo(Point p){
-        if(this.x < p.x){
-            return -1;
-        }else if(this.x == p.x){
-            if(this.y < p.y){
-                return -1;
-            }else{
-                return 1;
-            }
-        }
-        return 1;
-    }
-    */
-
     /*  Getters */
     public int getX(){  //returns value of X
         return this.x;

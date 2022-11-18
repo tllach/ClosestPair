@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/*
+ * Algoritmos Y Complejidad                                 18/11/22
+ * Tabata Llach Bruges
+ *
+ * Class:
+ *     implementation of the algorithm Divide And Conquer
+ */
+
 public class DivideAndConquer {
 
     /* data members */

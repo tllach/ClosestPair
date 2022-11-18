@@ -2,6 +2,14 @@ package com.tabata;
 
 import java.util.ArrayList;
 
+/*
+ * Algoritmos Y Complejidad                                 18/11/22
+ * Tabata Llach Bruges
+ *
+ * Class:
+ *     implementation of the algorithm Brutal Force
+ */
+
 public class BrutalForce {
 
     public BrutalForce(){
